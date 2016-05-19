@@ -1,0 +1,143 @@
+**************************
+Linux Potatoes
+**************************
+
+So you've ruined your gnome desktop installation. 
+Do this - you'll lose your customisations but it'll solve your woes.
+
+rm -rf .gnome .gnome2 .gconf .gconfd .metacity
+
+Give another user file permissions
+chmod og+r+x <folder>
+
+****************
+VIM
+
+Basic search and replace
+
+The :substitute command searches for a text pattern, and replaces it with a text string. There are many options, but these are what you probably want:
+
+:%s/foo/bar/g
+Find each occurrence of 'foo' (in all lines), and replace it with 'bar'.
+:s/foo/bar/g
+Find each occurrence of 'foo' (in the current line only), and replace it with 'bar'.
+:%s/foo/bar/gc
+Change each 'foo' to 'bar', but ask for confirmation first.
+:%s/\<foo\>/bar/gc
+Change only whole words exactly matching 'foo' to 'bar'; ask for confirmation.
+:%s/foo/bar/gci
+Change each 'foo' (case insensitive due to the i flag) to 'bar'; ask for confirmation.
+:%s/foo\c/bar/gc is the same because \c makes the search case insensitive.
+This may be wanted after using :set noignorecase to make searches case sensitive (the default).
+:%s/foo/bar/gcI
+Change each 'foo' (case sensitive due to the I flag) to 'bar'; ask for confirmation.
+:%s/foo\C/bar/gc is the same because \C makes the search case sensitive.
+This may be wanted after using :set ignorecase to make searches case insensitive.
+
+*************************
+
+SCP
+
+From local to remote
+[pineehad@localhost ~]$ scp examplefile yourusername@yourserver:/home/yourusername/
+
+From remote to local
+[pineehad@localhost ~]$ scp yourusername@yourserver:/home/yourusername/examplefile .
+
+*********************
+
+** Unpack Zipped Files
+
+.tar.gz
+tar -xvzf rebol.tar.gz
+
+.gz
+gunzip rebol.gz
+
+
+***
+Size of Folder
+
+du -hs /path/to/folder
+
+Size of all local user folders
+du -chsx./* 2>/dev/null
+
+***************************
+
+Running history commands
+
+!!      : to run the previous command 
+^p      : move up through the history list, one command at a time (Up arrow key)
+^N      : Move down
+!n      : Run nth command in history where n is a number in yourhistory list
+!n:p    : preview nth command (will not execute)
+!string : Run most recent command starting with characters in string. 
+
+**********************
+
+GIT 
+
+Adjust commit message of previous commit
+
+git rebase -i origin
+Then in the edit - update the bottom rows and squash as appropriate ( don't use fixup just edit the squashed commits in the next window)
+git push origin <branch name> -f (has to be -f as editing history)
+
+http://www.alexkras.com/getting-started-with-git/
+http://www.alexkras.com/19-git-tips-for-everyday-use/
+
+******************
+Listing
+
+ls -lh - list with human readable file sizes
+ls -ltu - list by access time
+ls -l - list with file details
+
+
+******************
+Grep 
+
+grep -rl "string" /path
+
+-r (or --recursive) option is used to traveser all sub-directories of /path. Whereas...
+-l (or --files-with-matches) option is used to only print filenames of matching files and not the matching lines (this could also improve the speed as it stops grep reading each file at the first match)
+
+grep -Hrn 'search term' /path/to/file
+-H causes the file name to be printed 
+-r gives a recursive search
+-n causes the line number to be printed
+
+Further useful options
+
+-I  ignore binary files (complement -a trat all files as text
+-F  treat search term as a literal not a regular expression
+-i  do a case insensitive search
+
+--color=auto to force colors even when piping through less. To make less support colors you need to use the -r option.
+
+
+head -l <filename> gives the header lines of the file.
+
+
+Bash Beginners guide
+http://www.tldp.org/LDP/Bash-Beginners-Guide/html/index.html
+
+Sed Book
+http://www.grymoire.com/Unix/Sed.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
