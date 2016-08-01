@@ -128,6 +128,9 @@ http://www.grymoire.com/Unix/Sed.html
 
 
 
+Copy and Rename multiple files simultaneously - like a wizard!
+(fyi this just echos what would happen and doesn't do anything)
+find . -name 'uat3*' | while read oldname; do echo cp "$oldname" "${oldname/uat3/ppe}"; done
 
 
 
