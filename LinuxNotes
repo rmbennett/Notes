@@ -34,6 +34,15 @@ Change each 'foo' (case sensitive due to the I flag) to 'bar'; ask for confirmat
 :%s/foo\C/bar/gc is the same because \C makes the search case sensitive.
 This may be wanted after using :set ignorecase to make searches case insensitive.
 
+Move to the end of the line - $
+Move to the end of the line and switch to editing mode -   A
+
+.VimRC - some requirements to make vim on a mac tidier
+syntax enable
+set nocompatible
+set backspace=indent,eol,start
+set ruler
+
 *************************
 
 SCP
@@ -87,6 +96,26 @@ git push origin <branch name> -f (has to be -f as editing history)
 http://www.alexkras.com/getting-started-with-git/
 http://www.alexkras.com/19-git-tips-for-everyday-use/
 
+Renaming branches
+git branch -m old_branch new_branch         # Rename branch locally    
+git push origin :old_branch                 # Delete the old branch    
+git push --set-upstream origin new_branch   # Push the new branch, set local branch to track the new remote
+
+Move commit to a new branch
+# Note: Any changes not committed will be lost.
+git branch newbranch      # Create a new branch, saving the desired commits
+git reset --hard HEAD~3   # Move master back by 3 commits (GONE from master)
+git checkout newbranch    # Go to the new branch that still has the desired commits
+
+
+Move commits to an existing branch
+git checkout existingbranch
+git merge master
+git checkout master
+git reset --hard HEAD~3 # Go back 3 commits. You *will* lose uncommitted work.
+git checkout existingbranch
+https://stackoverflow.com/questions/1628563/move-the-most-recent-commits-to-a-new-branch-with-git
+
 ******************
 Listing
 
@@ -134,13 +163,20 @@ find . -name 'uat3*' | while read oldname; do echo cp "$oldname" "${oldname/uat3
 
 
 
+********************
+Terminal Hopping
+
+Ctrl+A go to start of terminal command 
+Ctrl+E go to end of terminal command
+
+Esc+F Move to beginning of the next word
+Esc+B Move to beginning of the Current word
 
 
 
-
-
-
-
+************************
+Search list of man pages for possible matches based on a search term
+apropos <term>   e.g. apropos passwd
 
 
 
